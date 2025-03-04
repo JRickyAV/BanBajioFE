@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert,Image,ImageBackground } from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigator';
@@ -26,35 +26,33 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
     rnBiometrics.simplePrompt({ promptMessage: 'Confirm fingerprint to log in' })
       .then((result: { success: boolean }) => {
         if (result.success) {
-          Alert.alert('Success', 'Authenticated successfully!');
           navigation.replace('Home');
         } else {
-          Alert.alert('Error', 'Authentication failed');
         }
       })
       .catch(() => {
-        Alert.alert('Error', 'Biometric authentication failed');
       });
   };
 
   // 🔹 Function to handle manual login
   const handleLogin = () => {
     if (!email || !password) {
-      Alert.alert('Error', 'Please enter email and password');
       return;
     }
 
-    if (email === 'test@example.com' && password === 'password') {
-      Alert.alert('Success', 'Logged in successfully!');
+    if (email === 'usuario@banbajio.com' && password === 'qwer') {
       navigation.replace('Home');
     } else {
-      Alert.alert('Error', 'Invalid email or password');
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+    <View style={styles.allcontainer} >
+      <ImageBackground source={require('../../assets/bbbg.png')} style={styles.imagecontainer} resizeMode='stretch'>
+      </ImageBackground>
+      <View style={styles.container}>
+      <Image style={styles.icon} source={require('../../assets/BB.png')} ></Image>
+      <Text style={styles.title}>Crowdfunding</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -70,11 +68,14 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         onChangeText={setPassword}
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
+        <Text style={styles.buttonText}>Inicio de sesion</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.biometricsButton} onPress={handleBiometricAuth}>
-        <Text style={styles.buttonText}>Login with Fingerprint</Text>
+        <Text style={styles.buttonText}>Inicio por biometría</Text>
       </TouchableOpacity>
+      <Text style={styles.version} >Version 1.0.0</Text>
+      </View>
+
     </View>
   );
 };
@@ -83,15 +84,27 @@ export default LoginScreen;
 
 // 🔹 Styles
 const styles = StyleSheet.create({
+  allcontainer:{
+    width:'100%',
+    height:'100%'
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    marginBottom:'60%'
   },
+  imagecontainer: {
+    position:'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width:'100%',
+    height:'100%'
+    },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: '#7840BF',
     marginBottom: 20,
   },
   input: {
@@ -105,7 +118,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
   },
   button: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#7840BF',
     padding: 15,
     borderRadius: 10,
     width: '80%',
@@ -113,7 +126,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   biometricsButton: {
-    backgroundColor: '#28a745',
+    backgroundColor: 'rgb(23, 153, 188)',
     padding: 15,
     borderRadius: 10,
     width: '80%',
@@ -124,4 +137,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  icon:{
+    width: 120,
+    height:120,
+    marginBottom:-20
+    // borderWidth: 1,
+    // borderColor: 'red',
+  },
+  version:{
+    marginTop:20
+  }
 });
