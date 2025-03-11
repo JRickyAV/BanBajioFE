@@ -6,4 +6,5 @@ export interface Project {
   description: string;
   type: number;
   budget: Float;
+  img: string;
 }

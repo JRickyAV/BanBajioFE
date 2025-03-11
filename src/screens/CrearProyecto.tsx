@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import { View, Text, StyleSheet, TextInput,Button, Image, TouchableOpacity,ImageBackground} from 'react-native'
 import { Picker } from '@react-native-picker/picker';
-import useCreateProject from '../../hooks/postProject';
+import useCreateProject from '../hooks/postProject';
+import TopBar from '../components/topbar';
 
 export default function CrearProyecto() {
   const { createProject, loading, error } = useCreateProject();
@@ -13,6 +14,7 @@ export default function CrearProyecto() {
     description: '',
     type: selectedType,
     budget: 0,
+    img:''
   });
 
   const handleSubmit = async () => {
@@ -23,12 +25,10 @@ export default function CrearProyecto() {
   };
 
   return (
+    <View>
+      <TopBar></TopBar>
     <View style={styles.allcontainer}>
-      <ImageBackground source={require('../../../assets/bbbg3.png')} style={styles.imagecontainer} resizeMode='stretch'>
-      </ImageBackground>    
-       <View style={styles.centeredcontainer}>
-        <Image style={styles.icon} source={require('../../../assets/BB.png')} ></Image>
-      </View>
+
     <View style={styles.container}>
      
       <Text style={styles.label}>Titulo del proyecto:</Text>
@@ -37,7 +37,7 @@ export default function CrearProyecto() {
         placeholder="Nombre del Proyecto"
         placeholderTextColor='gray'
         onChangeText={(text) => setProject({ ...project, name: text })}
-      />
+        />
 
       <Text style={styles.label}>Descripción:</Text>
       <TextInput
@@ -45,16 +45,15 @@ export default function CrearProyecto() {
         placeholder="Descripción"
         placeholderTextColor='gray'
         onChangeText={(text) => setProject({ ...project, description: text })}
-      />
+        />
 
       <Text style={styles.label}>Tipo de proyecto:</Text>
       <Picker
         selectedValue={selectedType}
         onValueChange={(itemValue) => setSelectedType(itemValue)}
         style={styles.picker}        
-      >
-        <Picker.Item label="Selecciona una opción..." value="" color='gray'
- />
+        >
+        <Picker.Item label="Selecciona una opción..." value="" color='gray'/>
         <Picker.Item label="Negocios" value="1"  color='gray' />
         <Picker.Item label="Medio ambiente" value="2"  color='gray'/>
         <Picker.Item label="Emergencias" value="3"  color='gray'/>
@@ -70,7 +69,7 @@ export default function CrearProyecto() {
         placeholderTextColor='gray'
         keyboardType="numeric"
         onChangeText={(text) => setProject({ ...project, budget: Number(text) })}
-      />
+        />
 
       <View style={styles.centeredcontainer}>
 
@@ -81,6 +80,7 @@ export default function CrearProyecto() {
 
     </View>
     </View>
+</View>
   );
 }
 
@@ -113,10 +113,6 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     marginBottom: 15,
   },  
-  icon:{
-    width: 80,
-    height:80,
-  },
   button: {
     backgroundColor: '#7840BF',
     padding: 15,
@@ -128,11 +124,5 @@ const styles = StyleSheet.create({
   buttonText:{
     color:'rgb(255, 255, 255)'
   },
-  imagecontainer: {
-    position:'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width:'100%',
-    height:'100%'
-    },
+
 });

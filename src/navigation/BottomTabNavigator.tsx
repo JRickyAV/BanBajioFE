@@ -5,7 +5,7 @@ import { View, Text, Image } from 'react-native'
 import Proyectos from '../screens/Proyectos/Proyectos'
 import Inicio from '../screens/Inicio'
 import Cartera from '../screens/Cartera'
-import CrearProyecto from '../screens/CrearProyecto/CrearProyecto' 
+import CrearProyecto from '../screens/CrearProyecto'
 import { globalStyles } from '../styles/globalStyles'
 
 export type TabParamList = {
@@ -20,7 +20,6 @@ const Tab = createBottomTabNavigator<TabParamList>();
 export default function BottomTabNavigator() {
   return (
     <Tab.Navigator>
-
       <Tab.Screen
         name="Inicio"
         component={Inicio}
@@ -34,8 +33,6 @@ export default function BottomTabNavigator() {
             />) 
          }}
       />
-
-
 
       {/* Proyectos*/}
       <Tab.Screen
