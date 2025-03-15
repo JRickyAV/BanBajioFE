@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet,Text, View, TouchableOpacity,Image,TextInput} from 'react-native'
+import { StyleSheet,Text, View, TouchableOpacity,Image,TextInput,KeyboardAvoidingView,Platform,ScrollView} from 'react-native'
 import { globalStyles } from '../styles/globalStyles'
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/AppNavigator';
@@ -13,29 +13,38 @@ type ProjectProps = {
 
 export default function ProjectComponent({project}:ProjectProps) {
   return (
-    <>      
-            <View style={styles.container}>
+    <>  
+    <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}>
+            <ScrollView 
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{ flexGrow: 1 }}
+        >
+            <Text style={globalStyles.title}>{project.name}</Text> 
+            <Text style={globalStyles.text}>{project.description}</Text> 
+            <Text style={globalStyles.text}><Text style={globalStyles.title}>Total recaudado</Text> {project.budget}</Text>
+            <Image style={globalStyles.testImg} source={{uri:project.img}}></Image>
 
-                <Text style={globalStyles.title}>{project.name}</Text> 
-                <Text style={globalStyles.text}>{project.description}</Text> 
-                <Text style={globalStyles.text}><Text style={globalStyles.title}>Total recaudado</Text> {project.budget}</Text>
-                <Image style={globalStyles.testImg} source={{uri:project.img}}></Image>
+            <Text style={globalStyles.text}><Text style={globalStyles.title}>Actualizaciones</Text> {'>'}</Text>
+            <Text style={globalStyles.text}><Text style={globalStyles.title}>Opiniones</Text> {'>'}</Text>
+            <Text style={globalStyles.text}><Text style={globalStyles.title}>Fecha final de recaudación:</Text> 20/3/2025</Text>
 
-                <View style={globalStyles.buttonContainer}>
-                <TextInput
-                    style={globalStyles.input}
-                    placeholder="Cantidad"
-                    placeholderTextColor='gray'
-                    keyboardType='numeric'
-                    />
-                    <TouchableOpacity style={styles.button} >
-                            <Text style={styles.buttonText}>Aportar a proyecto</Text>
-                    </TouchableOpacity>
-                </View>
+            <View style={globalStyles.buttonContainer}>
+
+            <TextInput
+                style={globalStyles.input}
+                placeholder="Cantidad"
+                placeholderTextColor='gray'
+                keyboardType='numeric'
+            />
+
+                <TouchableOpacity style={styles.button} >
+                        <Text style={styles.buttonText}>Aportar a proyecto</Text>
+                </TouchableOpacity>
             </View>
-
-            
-    
+            </ScrollView>
+        </KeyboardAvoidingView>
     </>
   )
 }

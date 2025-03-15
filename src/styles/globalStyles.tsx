@@ -9,7 +9,6 @@ export const globalStyles = StyleSheet.create({
     position:'absolute',
     width:'100%',
     height:'100%',
-    borderWidth:2
   },
   buttonContainer: {
     alignItems:'center',

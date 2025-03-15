@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ImageBackground, StyleSheet,Text,Image} from 'react-native'
+import { View, ImageBackground, StyleSheet,Image} from 'react-native'
 
 export default function TopBarComponent() {
   return (

@@ -73,7 +73,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
       <TouchableOpacity style={styles.biometricsButton} onPress={handleBiometricAuth}>
         <Text style={styles.buttonText}>Inicio por biometría</Text>
       </TouchableOpacity>
-      <Text style={styles.version} >Version 1.0.0</Text>
+      <Text style={styles.version} >Version 1.0.2</Text>
       </View>
 
     </View>

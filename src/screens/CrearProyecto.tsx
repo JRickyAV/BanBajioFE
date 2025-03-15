@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput,Button, Image, TouchableOpacity,Image
 import { Picker } from '@react-native-picker/picker';
 import useCreateProject from '../hooks/postProject';
 import TopBar from '../components/topbar';
+import CreateProjectComponent from '../components/createproject';
 
 export default function CrearProyecto() {
   const { createProject, loading, error } = useCreateProject();
@@ -30,53 +31,13 @@ export default function CrearProyecto() {
     <View style={styles.allcontainer}>
 
     <View style={styles.container}>
-     
-      <Text style={styles.label}>Titulo del proyecto:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Nombre del Proyecto"
-        placeholderTextColor='gray'
-        onChangeText={(text) => setProject({ ...project, name: text })}
-        />
-
-      <Text style={styles.label}>Descripción:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Descripción"
-        placeholderTextColor='gray'
-        onChangeText={(text) => setProject({ ...project, description: text })}
-        />
-
-      <Text style={styles.label}>Tipo de proyecto:</Text>
-      <Picker
-        selectedValue={selectedType}
-        onValueChange={(itemValue) => setSelectedType(itemValue)}
-        style={styles.picker}        
-        >
-        <Picker.Item label="Selecciona una opción..." value="" color='gray'/>
-        <Picker.Item label="Negocios" value="1"  color='gray' />
-        <Picker.Item label="Medio ambiente" value="2"  color='gray'/>
-        <Picker.Item label="Emergencias" value="3"  color='gray'/>
-        <Picker.Item label="Educación" value="4"  color='gray'/>
-        <Picker.Item label="Ambiental" value="4"  color='gray'/>
-
-
-      </Picker>
-      <Text style={styles.label}>Recaudación inicial:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="$0"
-        placeholderTextColor='gray'
-        keyboardType="numeric"
-        onChangeText={(text) => setProject({ ...project, budget: Number(text) })}
-        />
-
-      <View style={styles.centeredcontainer}>
-
-      <TouchableOpacity style={styles.button} onPress={handleSubmit} >
-                <Text style={styles.buttonText}>Subir Proyecto</Text>
-      </TouchableOpacity>
-      </View>
+      <CreateProjectComponent 
+        project={project}
+        setProject={setProject}
+        selectedType={selectedType}
+        setSelectedType={setSelectedType}
+        handleSubmit={handleSubmit}
+      />
 
     </View>
     </View>

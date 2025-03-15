@@ -4,8 +4,8 @@ import TopBar from '../components/topbar';
 
 const section1Images = [
   { id: '1', name:"Tecnología de plantas genera ingresos a inversionistas", url: 'http://127.0.0.1:5000/uploads/granja.jpg' },
-  { id: '2', name:"Establo de vaquitas transforma el mundo ",url: 'http://127.0.0.1:5000/uploads/cows.png'},
-  { id: '3', name:"Nuevo Proyecto Sustentable de Parque de Innovación ",url:'http://127.0.0.1:5000/uploads/parque.jpg' },
+  { id: '2', name:"Nuevo Proyecto Sustentable de Parque de Innovación ",url:'http://127.0.0.1:5000/uploads/parque.jpg' },
+  { id: '3', name:"Establo de vaquitas transforma el mundo ",url: 'http://127.0.0.1:5000/uploads/cows.png'},
 ];
 
 export default function Inicio() {
